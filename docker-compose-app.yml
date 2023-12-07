@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     depends_on:
-      - seed
+      # - seed
       - appdb-migration
     volumes:
       - app_data:/server
@@ -34,14 +34,14 @@ services:
     networks:
       - dhruva-network
 
-  seed:
-    image: seed
-    container_name: seed
-    env_file:
-      - .env
-    command: sh -c "python3 main.py"
-    networks:
-      - dhruva-network
+  # seed:
+  #   image: seed
+  #   container_name: seed
+  #   env_file:
+  #     - .env
+  #   command: sh -c "python3 main.py"
+  #   networks:
+  #     - dhruva-network
 
   appdb-migration:
     image: server
