@@ -309,7 +309,7 @@ class InferenceService:
         service: Service = validate_service_id(serviceId, self.service_repository)  # type: ignore
         headers = {"Authorization": "Bearer " + service.api_key}
 
-        language = request_body.config.language.sourceLanguage
+        language = request_body.config.languages[0].sourceLanguage
         results = []
         for input in request_body.image:
 
@@ -328,7 +328,7 @@ class InferenceService:
                 None).time():
                 response = self.inference_gateway.send_triton_request(
                         url=service.endpoint,
-                        model_name="ocr",
+                        model_name="python_tesseract",
                         input_list=inputs,
                         output_list=outputs,
                         headers=headers,
